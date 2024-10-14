@@ -63,4 +63,8 @@ COPY --chown=node:node examples ./examples
 COPY --chown=node:node packages/backend/dist/bundle.tar.gz app-config*.yaml ./
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
-CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
+# Copy the custom script that configures and runs backstage
+COPY bin ./bin
+
+ENTRYPOINT ["sh" , "-c"]
+CMD ["./bin/run"]
