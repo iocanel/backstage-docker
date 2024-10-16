@@ -33,4 +33,7 @@ if [ -n "$KUBERNETES_CLUSTER_NAME" ] && [ -n "$KUBERNETES_API_URL" ] && [ -n "$K
   cat app-config.kubernetes.yaml >> app-config.production.yaml
 fi
 
+
+cat app-config.catalog.yaml >> app-config.production.yaml
+
 node packages/backend --config app-config.production.yaml
