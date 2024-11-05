@@ -13,9 +13,9 @@
     "lint": "backstage-cli package lint",
     "test": "backstage-cli package test",
     "clean": "backstage-cli package clean",
-    "build-image": "DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64,linux/arm64 ../.. -f Dockerfile --tag quay.io/iocanel/backstage --output type=oci,dest=multiarch-image.tar",
+    "build-image": "DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64,linux/arm64,macos/arm64 ../.. -f Dockerfile --tag quay.io/iocanel/backstage --output type=oci,dest=multiarch-image.tar",
     "build-image-linux": "docker build --platform linux/amd64 ../.. -f Dockerfile --tag quay.io/iocanel/backstage",
-    "push-image": "DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64,linux/arm64 ../.. -f Dockerfile --tag quay.io/iocanel/backstage --push"
+    "push-image": "DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64,linux/arm64,macos/arm64 ../.. -f Dockerfile --tag quay.io/iocanel/backstage --push"
   },
   "dependencies": {
     "@backstage/backend-defaults": "^0.5.0",
