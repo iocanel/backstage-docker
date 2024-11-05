@@ -25,19 +25,6 @@ jobs:
     - name: Build
       run: yarn build:all
 
-    - name: Build Docker image with yarn
-      run: yarn build-image
-
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-    - name: Push Docker image to Docker Hub
-      run: |
-        docker push iocanel/backstage:latest
-
     - name: Log in to Quay.io
       uses: docker/login-action@v2
       with:
@@ -45,7 +32,5 @@ jobs:
         username: ${{ secrets.QUAY_USERNAME }}
         password: ${{ secrets.QUAY_PASSWORD }}
 
-    - name: Push Docker image to Quay.io
-      run: |
-        docker tag iocanel/backstage:latest quay.io/iocanel/backstage:latest
-        docker push quay.io/iocanel/backstage:latest
+    - name: Build Docker image with yarn
+      run: yarn push-image
