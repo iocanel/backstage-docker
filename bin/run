@@ -23,13 +23,11 @@ fi
 
 if [ -n "$ARGOCD_NAME" ] && [ -n "$ARGOCD_SERVER" ] && [ -n "$ARGOCD_ADMIN_USER" ] && [ -n "$ARGOCD_ADMIN_PASSWORD" ]; then
   echo "Setting up ArgoCD"
-  cat app-config.gitea.yaml >> app-config.production.yaml
   cat app-config.argocd.yaml >> app-config.production.yaml
 fi
 
 if [ -n "$KUBERNETES_CLUSTER_NAME" ] && [ -n "$KUBERNETES_API_URL" ] && [ -n "$KUBERNETES_SERVICE_ACCOUNT_TOKEN" ]; then
   echo "Setting up Kubernetes"
-  cat app-config.gitea.yaml >> app-config.production.yaml
   cat app-config.kubernetes.yaml >> app-config.production.yaml
 fi
 
