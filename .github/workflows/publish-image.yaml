@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+  create:
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -31,6 +31,9 @@ jobs:
         registry: quay.io
         username: ${{ secrets.QUAY_USERNAME }}
         password: ${{ secrets.QUAY_PASSWORD }}
+    - name: Set TAG environment variable
+      if: startsWith(github.ref, 'refs/tags/')
+      run: echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
     - name: Build Docker image with yarn
       run: yarn push-image
